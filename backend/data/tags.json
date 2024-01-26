@@ -1,29 +1,51 @@
 [
-    {
-      "model": "recipes.tag",
-      "pk": 1,
-      "fields": {
-        "name": "Завтрак",
-        "color": "#7FFFD4",
-        "slug": "breakfast"
-      }
-    },
-    {
-      "model": "recipes.tag",
-      "pk": 2,
-      "fields": {
-        "name": "Обед",
-        "color": "#FF4500",
-        "slug": "dinner"
-      }
-    },
-    {
-      "model": "recipes.tag",
-      "pk": 3,
-      "fields": {
-        "name": "Ужин",
-        "color": "#00BFFF",
-        "slug": "Supper"
-      }
-    }
-  ]
+  {"model": "recipes.tag", "pk": 1, "fields": {"name": "Салаты", "color": "#5cb85c", "slug": "salads"}},
+  {"model": "recipes.tag", "pk": 2, "fields": {"name": "Супы", "color": "#d9534f", "slug": "soups"}},
+  {"model": "recipes.tag", "pk": 3, "fields": {"name": "Гарниры", "color": "#f0ad4e", "slug": "sides"}},
+  {"model": "recipes.tag", "pk": 4, "fields": {"name": "Завтраки", "color": "#5bc0de", "slug": "breakfast"}},
+  {"model": "recipes.tag", "pk": 5, "fields": {"name": "Десерты", "color": "#337ab7", "slug": "desserts"}},
+  {"model": "recipes.tag", "pk": 6, "fields": {"name": "Закуски", "color": "#a94442", "slug": "appetizers"}},
+  {"model": "recipes.tag", "pk": 7, "fields": {"name": "Паста", "color": "#428bca", "slug": "pasta"}},
+  {"model": "recipes.tag", "pk": 8, "fields": {"name": "Рыба", "color": "#d9534f", "slug": "fish"}},
+  {"model": "recipes.tag", "pk": 9, "fields": {"name": "Мясо", "color": "#5cb85c", "slug": "meat"}},
+  {"model": "recipes.tag", "pk": 10, "fields": {"name": "Вегетарианское", "color": "#f0ad4e", "slug": "vegetarian"}},
+  {"model": "recipes.tag", "pk": 11, "fields": {"name": "Пицца", "color": "#5bc0de", "slug": "pizza"}},
+  {"model": "recipes.tag", "pk": 12, "fields": {"name": "Сэндвичи", "color": "#337ab7", "slug": "sandwiches"}},
+  {"model": "recipes.tag", "pk": 13, "fields": {"name": "Каши", "color": "#a94442", "slug": "porridge"}},
+  {"model": "recipes.tag", "pk": 14, "fields": {"name": "Зимние блюда", "color": "#428bca", "slug": "winter"}},
+  {"model": "recipes.tag", "pk": 15, "fields": {"name": "Летние блюда", "color": "#d9534f", "slug": "summer"}},
+  {"model": "recipes.tag", "pk": 16, "fields": {"name": "Постные блюда", "color": "#5cb85c", "slug": "fasting"}},
+  {"model": "recipes.tag", "pk": 17, "fields": {"name": "Сладкие напитки", "color": "#f0ad4e", "slug": "sweet-drinks"}},
+  {"model": "recipes.tag", "pk": 18, "fields": {"name": "Коктейли", "color": "#5bc0de", "slug": "cocktails"}},
+  {"model": "recipes.tag", "pk": 19, "fields": {"name": "Жареное", "color": "#337ab7", "slug": "fried"}},
+  {"model": "recipes.tag", "pk": 20, "fields": {"name": "Мороженое", "color": "#a94442", "slug": "ice-cream"}},
+  {"model": "recipes.tag", "pk": 21, "fields": {"name": "Печенье", "color": "#428bca", "slug": "cookies"}},
+  {"model": "recipes.tag", "pk": 22, "fields": {"name": "Торты", "color": "#d9534f", "slug": "cakes"}},
+  {"model": "recipes.tag", "pk": 23, "fields": {"name": "Пироги", "color": "#5cb85c", "slug": "pies"}},
+  {"model": "recipes.tag", "pk": 24, "fields": {"name": "Консервированные блюда", "color": "#f0ad4e", "slug": "canned"}},
+  {"model": "recipes.tag", "pk": 25, "fields": {"name": "Гриль", "color": "#5bc0de", "slug": "grill"}},
+  {"model": "recipes.tag", "pk": 26, "fields": {"name": "Завтраки на скорую руку", "color": "#337ab7", "slug": "quick-breakfast"}},
+  {"model": "recipes.tag", "pk": 27, "fields": {"name": "Бургеры", "color": "#a94442", "slug": "burgers"}},
+  {"model": "recipes.tag", "pk": 28, "fields": {"name": "Веган", "color": "#428bca", "slug": "vegan"}},
+  {"model": "recipes.tag", "pk": 29, "fields": {"name": "Курица", "color": "#d9534f", "slug": "chicken"}},
+  {"model": "recipes.tag", "pk": 30, "fields": {"name": "Молочные блюда", "color": "#5cb85c", "slug": "dairy"}},
+  {"model": "recipes.tag", "pk": 31, "fields": {"name": "Рыбные блюда", "color": "#f0ad4e", "slug": "seafood"}},
+  {"model": "recipes.tag", "pk": 32, "fields": {"name": "Сладкие снеки", "color": "#5bc0de", "slug": "sweet-snacks"}},
+  {"model": "recipes.tag", "pk": 33, "fields": {"name": "Домашние напитки", "color": "#337ab7", "slug": "homemade-drinks"}},
+  {"model": "recipes.tag", "pk": 34, "fields": {"name": "Кисломолочные продукты", "color": "#a94442", "slug": "fermented-dairy"}},
+  {"model": "recipes.tag", "pk": 35, "fields": {"name": "Фарши", "color": "#428bca", "slug": "stuffing"}},
+  {"model": "recipes.tag", "pk": 36, "fields": {"name": "Постные супы", "color": "#d9534f", "slug": "fasting-soups"}},
+  {"model": "recipes.tag", "pk": 37, "fields": {"name": "Салаты с мясом", "color": "#5cb85c", "slug": "meat-salads"}},
+  {"model": "recipes.tag", "pk": 38, "fields": {"name": "Сырники", "color": "#f0ad4e", "slug": "cheesecakes"}},
+  {"model": "recipes.tag", "pk": 39, "fields": {"name": "Вегетарианские бургеры", "color": "#5bc0de", "slug": "vegetarian-burgers"}},
+  {"model": "recipes.tag", "pk": 40, "fields": {"name": "Тайская кухня", "color": "#337ab7", "slug": "thai-cuisine"}},
+  {"model": "recipes.tag", "pk": 41, "fields": {"name": "Кислые блюда", "color": "#a94442", "slug": "sour"}},
+  {"model": "recipes.tag", "pk": 42, "fields": {"name": "Сырные соусы", "color": "#428bca", "slug": "cheese-sauces"}},
+  {"model": "recipes.tag", "pk": 43, "fields": {"name": "Тарталетки", "color": "#d9534f", "slug": "tarts"}},
+  {"model": "recipes.tag", "pk": 44, "fields": {"name": "Плов", "color": "#5cb85c", "slug": "pilaf"}},
+  {"model": "recipes.tag", "pk": 45, "fields": {"name": "Томатные блюда", "color": "#f0ad4e", "slug": "tomato-dishes"}},
+  {"model": "recipes.tag", "pk": 46, "fields": {"name": "Фруктовые десерты", "color": "#5bc0de", "slug": "fruit-desserts"}},
+  {"model": "recipes.tag", "pk": 47, "fields": {"name": "Лазанья", "color": "#337ab7", "slug": "lasagna"}},
+  {"model": "recipes.tag", "pk": 48, "fields": {"name": "Тапас", "color": "#a94442", "slug": "tapas"}},
+  {"model": "recipes.tag", "pk": 49, "fields": {"name": "Детское меню", "color": "#428bca", "slug": "kids-menu"}}
+]

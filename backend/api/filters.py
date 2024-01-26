@@ -1,42 +1,48 @@
-from django_filters import rest_framework
+from django.contrib.auth import get_user_model
+from django_filters.rest_framework import filters, FilterSet
 
-from recipes.models import Favorite, Ingredient, Recipe, ShoppingCart, Tag
-
-CHOICES_LIST = (
-    ('0', 'False'),
-    ('1', 'True')
-)
+from recipes.models import Tag, Ingredients, Recipe
 
 
-class CustomFilterForRecipes(rest_framework.FilterSet):
-    """Кастомная фильтрация для рецептов."""
+User = get_user_model()
 
-    is_favorited = rest_framework.ChoiceFilter(
-        method='is_favorited_method',
-        choices=CHOICES_LIST
-    )
-    is_in_shopping_cart = rest_framework.ChoiceFilter(
-        method='is_in_shopping_cart_method',
-        choices=CHOICES_LIST
-    )
-    author = rest_framework.NumberFilter(
-        field_name='author',
-        lookup_expr='exact'
-    )
-    tags = rest_framework.ModelMultipleChoiceFilter(
+
+class IngredientFilter(FilterSet):
+
+    name = filters.CharFilter(lookup_expr='startswith')
+
+    class Meta:
+        model = Ingredients
+        fields = 'name',
+
+
+class RecipeFilter(FilterSet):
+
+    tags = filters.ModelMultipleChoiceFilter(
         field_name='tags__slug',
         to_field_name='slug',
-        queryset=Tag.objects.all()
+        queryset=Tag.objects.all(),
     )
 
-    def is_favorited_method(self, queryset, name, value):
-        if self.request.user.is_anonymous:
-            return Recipe.objects.none()
+    is_favorite = filters.BooleanFilter(method='filter_is_favorite')
+    in_shopping_cart = filters.BooleanFilter(method='filter_in_shopping_cart')
 
-        favorites = Favorite.objects.filter(user=self.request.user)
-        recipes = [item.recipe.id for item in favorites]
-        if value == '1':
-            return queryset.filter(id__in=recipes)
-        if value == '0':
-            return queryset.exclude(id__in=recipes)
+    class Meta:
+        model = Recipe
+        fields = 'tags', 'author',
 
+    def filter_is_favorite(self, queryset, name, value):
+        user = self.request.user
+
+        if value and not user.is_anonymous:
+            return queryset.filter(favorites__user=user)
+
+        return queryset
+
+    def filter_in_shopping_cart(self, queryset, name, value):
+        user = self.request.user
+
+        if value and not user.is_anonymous:
+            return queryset.filter(shopping_cart__user=user)
+
+        return queryset

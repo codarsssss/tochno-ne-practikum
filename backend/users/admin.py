@@ -1,29 +1,17 @@
-"""Модуль административной панели моделей приложения Users."""
-
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
-from .models import Follow, User
-
-
-class UserAdmin(admin.ModelAdmin):
-    """Административная модель для пользователей."""
-
-    list_display = ['email', 'username', 'first_name', 'last_name']
-    list_filter = ['email', 'username', 'first_name', 'last_name']
+from .models import Subscribe, User
 
 
-class AuthorAdmin(admin.ModelAdmin):
-    """Административная модель для авторов."""
+@admin.register(User)
+class UserAdmin(UserAdmin):
 
-    list_display = ['user']
-
-
-class FollowAdmin(admin.ModelAdmin):
-    """Административная модель для подписок."""
-
-    list_display = ['user', 'author', 'created_at']
-    list_filter = ['user', 'author']
+    list_display = 'username', 'id', 'email', 'first_name', 'last_name'
+    list_filter = ('email', 'first_name')
 
 
-admin.site.register(User, UserAdmin)
-admin.site.register(Follow, FollowAdmin)
+@admin.register(Subscribe)
+class SubscribeAdmin(admin.ModelAdmin):
+
+    list_display = ('user', 'author',)

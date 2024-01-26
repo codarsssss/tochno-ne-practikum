@@ -1,75 +1,47 @@
-"""Модуль с моделями приложения Users."""
-
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import UniqueConstraint
 
 
 class User(AbstractUser):
-    """Модель пользователя приложения Foodgram."""
-
-    email = models.EmailField('емайл', max_length=254, unique=True)
-    first_name = models.CharField('Имя', max_length=150)
-    last_name = models.CharField('Фамилия', max_length=150)
-    is_subscribed = models.BooleanField(default=False)
-    subscriptions = models.ManyToManyField('Author', through='Follow',
-                                           related_name='subscribers',
-                                           verbose_name='Подписки')
+    ''' Кастомная модель пользователя.
+    email используется в качестве уникального идентификатора.
+    При создании пользователя все поля обязательны для заполнения
+    '''
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+
+    REQUIRED_FIELDS = [
+        'username',
+        'first_name',
+        'last_name',
+    ]
+
+    email = models.EmailField('email address', max_length=255, unique=True)
 
     class Meta:
-        """Мета-класс."""
 
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+        ordering = ['id']
 
     def __str__(self):
-        """Возвращает строковое представление пользователя."""
-        return self.email
+        return self.username
 
 
-class Author(models.Model):
-    """Модель автора рецептов."""
+class Subscribe(models.Model):
+    ''' Модель для подписок пользователей '''
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE,
-                                primary_key=True,
-                                related_name='author_recipes')
-
-    def __str__(self):
-        """Возвращает строковое представление автора."""
-        return self.user.email
+    user = models.ForeignKey(to=User, verbose_name="Подписчик", on_delete=models.CASCADE, related_name='subscriber')
+    author = models.ForeignKey(to=User, verbose_name="Автор", on_delete=models.CASCADE, related_name='subscribing')
 
     class Meta:
-        """Мета-класс."""
-
-        verbose_name = 'Автор'
-        verbose_name_plural = 'Авторы'
-
-
-class Follow(models.Model):
-    """Модель подписки пользователя на автора рецепта."""
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE,
-                             related_name='follows',
-                             verbose_name='Подписчик')
-    author = models.ForeignKey(Author, on_delete=models.CASCADE,
-                               related_name='followers',
-                               verbose_name='Автор')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        """Мета-класс."""
-
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
+        ordering = ['id']
         constraints = [
-            models.UniqueConstraint(fields=['user', 'author'],
-                                    name='unique_user_author')]
-
-    def __str__(self):
-        """Возвращает строковое представление подписки."""
-        return f'{self.user} подписан на {self.author}'
+            UniqueConstraint(
+                fields=['user', 'author'],
+                name='unique_subscription'
+            )
+        ]
